@@ -67,7 +67,6 @@ def train(cfg: TrainingConfig | None = None):
         learning_rate=cfg.learning_rate,
         lr_scheduler_type=cfg.lr_scheduler_type,
         warmup_ratio=cfg.warmup_ratio,
-        max_seq_length=cfg.max_seq_length,
         fp16=cfg.fp16,
         bf16=cfg.bf16,
         logging_steps=cfg.logging_steps,
@@ -91,6 +90,7 @@ def train(cfg: TrainingConfig | None = None):
         train_dataset=dataset["train"],
         eval_dataset=dataset["validation"],
         args=training_args,
+        max_seq_length=cfg.max_seq_length,
     )
 
     trainer.train()
